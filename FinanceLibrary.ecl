@@ -1,15 +1,15 @@
 IMPORT STD;
 
-EXPORT Finance := MODULE, FORWARD
+EXPORT FinanceLibrary := MODULE, FORWARD
 
                 EXPORT Bundle := MODULE(Std.BundleBase)
-                                EXPORT Name := 'Finance';
+                                EXPORT Name := 'FinanceLibrary';
                                 EXPORT Description := 'Generally useful Finance functions';
                                 EXPORT Authors := ['Jim DeFabia','Richard Taylor','Bob Foreman'];
                                 EXPORT License := 'http://www.apache.org/licenses/LICENSE-2.0';
-                                EXPORT Copyright := 'Copyright (C) 2013 HPCC Systems';
+                                EXPORT Copyright := 'Copyright (C) 2020 HPCC Systems';
                                 EXPORT DependsOn := [];
-                                EXPORT Version := '1.0.0';
+                                EXPORT Version := '1.1.0';
                                 EXPORT PlatformVersion := '4.0.0';
                 END;
 
@@ -184,9 +184,9 @@ SHARED Period    := 13;     // Single Period to return
 
 // returns an amortization schedule detailing each periodic payment on a loan.
 // This shows the ratio of principal and interest and demonstrates 
-// how a loan's principal amount decreases over time.
+// how the principal amount of a loan decreases over time.
 
-SHARED a := Finance.Amortize(LoanAmt,IntRate,Term) ;
+SHARED a := FinanceLibrary.Amortize(LoanAmt,IntRate,Term) ;
 EXPORT Result1 := OUTPUT (a, NAMED('Amortize'));                                                       //Result 1
 
 
@@ -197,34 +197,34 @@ EXPORT Result2 := OUTPUT (a[Period],NAMED('AmortizePeriod'));                   
 
 //returns the payment amount for the loan period
 
-SHARED b := Finance.Payment(LoanAmt,IntRate,Term); 
+SHARED b := FinanceLibrary.Payment(LoanAmt,IntRate,Term); 
 EXPORT Result3 := OUTPUT(b,NAMED('Payment'));                                                        //Result 3
 
 
 
 // Calculates simple interest
 // Simple interest is calculated on remaining principal amount
-SHARED c := Finance.SimpleInterest(LoanAmt,IntRate);
+SHARED c := FinanceLibrary.SimpleInterest(LoanAmt,IntRate);
 EXPORT Result4 := OUTPUT(c,NAMED('SimpleInterest'));                                                         //Result 4
 
 
 // returns table of compounding interest
 // interest accumulates and new interest is calculated on 
 // principal amount + previous interest earned
-SHARED d :=  Finance.CompoundInterest(Principal,IntRate,Term);
+SHARED d :=  FinanceLibrary.CompoundInterest(Principal,IntRate,Term);
 EXPORT Result5 := OUTPUT (d,NAMED('CompoundInterest'));                                                         //Result 5
 //returns 13th row from the compound interest table
 EXPORT Result6 := OUTPUT (d[Period],NAMED('CompoundInterestPeriod'));                                                 //Result 6
 
 
 // Returns the present value of a future amount
-SHARED e :=  Finance.PresentValue(FutureVal,IntRate,Periods);
+SHARED e :=  FinanceLibrary.PresentValue(FutureVal,IntRate,Periods);
 EXPORT Result7 := OUTPUT(e,NAMED('PresentValue'));                                                          //Result 7
 
 
 // Returns the net present value of a future amount
 
-SHARED f :=  Finance.NetPresentValue(FutureVal,IntRate,Periods,OrigVal);
+SHARED f :=  FinanceLibrary.NetPresentValue(FutureVal,IntRate,Periods,OrigVal);
 EXPORT Result8 := OUTPUT(f,NAMED('NetPresentValue'));                                                          //Result 8
                     
 
@@ -232,7 +232,7 @@ EXPORT Result8 := OUTPUT(f,NAMED('NetPresentValue'));                           
 
 // Returns the future value of a present amount after a specific number of periods.
 
-SHARED g := Finance.FutureValue(Principal,IntRate,Term,Periods,Period);
+SHARED g := FinanceLibrary.FutureValue(Principal,IntRate,Term,Periods,Period);
 EXPORT Result9 := OUTPUT(g,NAMED('FutureValue'));                                                          //Result 9
 
 
