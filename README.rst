@@ -17,8 +17,7 @@ Install the individual bundle file or directory using the ecl command line optio
 
 For example:
 
-ecl bundle install Finance
-
+ecl bundle install https://github.com/JamesDeFabia/FinanceLibrary.git
 
 For more information about the bundle commands in the ecl command line tool, see the `HPCC Client Tools Manual`_
 
